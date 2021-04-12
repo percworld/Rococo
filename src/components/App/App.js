@@ -1,8 +1,10 @@
 import './App.scss';
 import { Route } from 'react-router-dom';
 import React, { useState, useEffect, useReducer } from 'react';
+
 import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
+import ArtDetails from '../ArtDetails/ArtDetails.js';
 
 function App() {
   const [wall, setWall] = useState([]);
@@ -11,7 +13,7 @@ function App() {
   // const [ artDetail, setArtDetail ] = useState({});
   // const [ favorites, setFavorites ] = useState([]);
   //const [ searchTerms, setSearchTerms ] = useState([]);
-  const searchTerm = 'q=sun&q=moon'; // search terms that we made to state
+  const searchTerm = 'q=sunflower'; // search terms that we made to state
   const artIdSearch = fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&${searchTerm}`)
     .then(response => response.json())
     .catch(error => setError(error.message))
@@ -40,6 +42,8 @@ function App() {
   }, [])
 
   useEffect(() => {
+    // getIDs();
+
     ids.length && getSingleArtPiece(shuffleItems(ids)[0]);
     ids.length && getSingleArtPiece(shuffleItems(ids)[1]);
     ids.length && getSingleArtPiece(shuffleItems(ids)[2]);
@@ -52,12 +56,18 @@ function App() {
 
 
   return (
-    <div className="App">Salon
+    <div className="App">
+      <Route
+        exact path="/"
+        render={() => <Wall artworks={wall} />}
+      />
+      <Route exact path='/:artPieceID' render={({ match }) => {
+        const { artPieceID } = match.params;
+        return <ArtDetails artPieceID={artPieceID} />
+      }} />
 
-      <Wall artworks={wall} />
-
-      {ids.length && console.log('Rendering IDs: ', ids)}
-      {wall.length && console.log('WALL: ', wall)}
+      {/* { ids.length && console.log('Rendering IDs: ', ids)}
+      { wall.length && console.log('WALL: ', wall)} */}
 
     </div>
   );
