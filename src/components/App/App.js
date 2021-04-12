@@ -1,7 +1,6 @@
 import './App.scss';
 import { Route } from 'react-router-dom';
 import React, { useState, useEffect, useReducer } from 'react';
-
 import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
 import ArtDetails from '../ArtDetails/ArtDetails.js';
@@ -16,13 +15,23 @@ function App() {
   const searchTerm = 'q=sunflower'; // search terms that we made to state
   const artIdSearch = fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&${searchTerm}`)
     .then(response => response.json())
-    .catch(error => setError(error.message))
+    .then(match => match.objectIDs)
+    .catch(error => setError(error.message));
 
-
+  // const artIdSearch = async () => {
+  //   try {
+  //     const response = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&${searchTerm}`);
+  //     let newList = await response.json()
+  //     console.log(newList.objectIDs);
+  //   } catch (error) {
+  //     setError(error.message)
+  //   }
+  //   return newList
+  // }
   const getIDs = async () => {
-    const idMatch = await artIdSearch;
+    const idMatches = await artIdSearch;
     setError('');
-    setIDs(idMatch.objectIDs);
+    setIDs(idMatches);
   }
 
 
