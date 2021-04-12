@@ -1,6 +1,6 @@
 import './App.scss';
-//import { Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { Route } from 'react-router-dom';
+import React, { useState, useEffect, useReducer } from 'react';
 import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
 
@@ -56,13 +56,9 @@ function App() {
 
       <Wall artworks={wall} />
 
-      // {ids.length && console.log('Rendering IDs: ', ids)}
-      // {wall.length && console.log('WALL: ', wall)}
-      // {wall.length && <img src={wall[0].primaryImageSmall} />}
-      // {wall[1] && <img src={wall[1].primaryImageSmall} />}
-      // {wall[2] && <img src={wall[2].primaryImageSmall} />}
-      // {wall[3] && <img src={wall[3].primaryImageSmall} />}
-      // {wall[4] && <img src={wall[4].primaryImageSmall} />}
+      {ids.length && console.log('Rendering IDs: ', ids)}
+      {wall.length && console.log('WALL: ', wall)}
+
     </div>
   );
 }
