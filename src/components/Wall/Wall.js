@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Wall.scss';
 import Artwork from '../Artwork/Artwork';
-
-const Wall = ({ artworks }) => {
-
+import GalleryContext from '../../context/gallery-context';
+const Wall = () => {
+  const { wall } = useContext(GalleryContext);
   // const salonTemplates = []; This will eventually contain multiple templates to choose from.
 
   // const artworks = [
@@ -15,25 +15,25 @@ const Wall = ({ artworks }) => {
   //   {objectID: 2019, primaryImageSmall: "https://images.metmuseum.org/CRDImages/ad/web-large/85I_ACF3093R6.jpg"},
   //   {objectID: 208554, primaryImageSmall: "https://images.metmuseum.org/CRDImages/es/web-large/DT4036.jpg"}
   // ]
-
-  const artworksToDisplay = artworks.map((artwork, index) => {
-      //create an array of artwork using props
-      //eventually we will pass this using context API
-      //use index to create dynamic classNames that correspond to locations in the templates
-      return (
-        <Artwork
+  console.log('WALL: ', wall)
+  const artworksToDisplay = wall.map((artwork, index) => {
+    //create an array of artwork using props
+    //eventually we will pass this using context API
+    //use index to create dynamic classNames that correspond to locations in the templates
+    return (
+      <Artwork
         wallLocation={`div${index}`}
         key={artwork.objectID}
         id={artwork.objectID}
         url={artwork.primaryImageSmall}
-        />
-      )
+      />
+    )
   })
 
   return (
-      <section className='salonTemplate'>
-        {artworksToDisplay}
-      </section>
+    <section className='salonTemplate'>
+      {artworksToDisplay}
+    </section>
   )
 
 }

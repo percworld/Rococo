@@ -10,7 +10,7 @@ const updateWall = (items, state) => {
 const addFavorite = (newFavorite, state) => {
     return {
         ...state,
-        favorites: [...favorites, newFavorite]
+        favorites: [...state.favorites, newFavorite]
     }
 }
 
@@ -29,6 +29,7 @@ const updateSingle = (newSingle, state) => {
 }
 
 const updateIds = (newIDs, state) => {
+    console.log('In Reducer: ', newIDs)
     return {
         ...state,
         IDs: [...newIDs]
@@ -45,7 +46,8 @@ const galleryReducer = (state, action) => {
         case UPDATE_SINGLE:
             return updateSingle(action.payload, state);
         case UPDATE_IDS:
-            return updateIds(action.payload, state);
+            console.log(action.payload)
+            return { ...state, IDs: action.payload }
         default:
             return state;
     }
