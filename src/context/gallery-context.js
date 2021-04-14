@@ -1,13 +1,5 @@
 import { createContext } from 'react';
 
-const GalleryContext = createContext(
-    // {
-    // wall: [],
-    // favorites: [],
-    // terms: [],
-    // single: {},
-    // IDs: []
-    // }
-);
+const GalleryContext = createContext();
 
 export default GalleryContext;

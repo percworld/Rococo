@@ -46,7 +46,7 @@ const galleryReducer = (state, action) => {
         case UPDATE_SINGLE:
             return updateSingle(action.payload, state);
         case UPDATE_IDS:
-            console.log(action.payload)
+            console.log('PAYLOAD: ', action.payload)
             return { ...state, IDs: action.payload }
         default:
             return state;

@@ -28,21 +28,23 @@ function App() {
   //const [ artDetail, setArtDetail ] = useState({});
   //const [ favorites, setFavorites ] = useState([]);
   //const [ searchTerms, setSearchTerms ] = useState([]);
-  const searchTerm = 'q=sunflower';
 
   const getIDs = async (searchTerm) => {
     try {
       const idMatches = await getIdObject(searchTerm);
       console.log(idMatches)
       dispatch({ type: 'UPDATE_IDS', payload: idMatches });
-      console.log(state)
+      console.log('STATE: ', state)
       setError('');
     } catch (error) {
       setError(error.message)
     }
   }
 
-  getIDs(searchTerm);
+  const searchTerm = 'q=sunflower';
+  useEffect(() => {
+    getIDs(searchTerm);
+  }, []);
 
   const getSingleArtPiece = async (index) => {
     try {
@@ -74,21 +76,21 @@ function App() {
 
 
   return (
-    <div className="App">
-      <GalleryContext.Provider value={[state, dispatch]}>
-        <Route
+    <GalleryContext.Provider value={[state, dispatch]}>
+      <div className="App">
+        {/* <Route
           exact path="/"
           render={() => <Wall />}
-        />
+        /> */}
         <Route exact path='/:artPieceID' render={({ match }) => {
           const { artPieceID } = match.params;
           return <ArtDetails artPieceID={artPieceID} />
         }} />
 
         {/* { ids.length && console.log('Rendering IDs: ', ids)}
-        { wall.length && console.log('WALL: ', wall)} */}
-      </GalleryContext.Provider>
-    </div>
+          { wall.length && console.log('WALL: ', wall)} */}
+      </div>
+    </GalleryContext.Provider>
   );
 }
 
