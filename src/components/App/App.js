@@ -1,84 +1,85 @@
 import './App.scss';
 import { Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
 import Header from '../Header/Header';
 import ArtDetails from '../ArtDetails/ArtDetails.js';
+import { getIdObject, getArtByIndex } from '../../apiCalls';
+import galleryReducer from '../../context/gallery-reducer';
+import GalleryContext from '../../context/gallery-context';
+
+
+const initialState = {
+  wall: [],
+  favorites: [],
+  terms: [],
+  single: {},
+  IDs: [],
+  error: ''
+}
+
 
 function App() {
-  const [wall, setWall] = useState([]);
-  const [ids, setIDs] = useState([]);
+  const [state, dispatch] = useReducer(galleryReducer, initialState)
   const [error, setError] = useState('');
-  // const [ artDetail, setArtDetail ] = useState({});
-  // const [ favorites, setFavorites ] = useState([]);
-  //const [ searchTerms, setSearchTerms ] = useState([]);
-  const searchTerm = 'q=sunflower'; // search terms that we made to state
-  const artIdSearch = fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&${searchTerm}`)
-    .then(response => response.json())
-    .catch(error => setError(error.message))
 
-
-  const getIDs = async () => {
-    const idMatch = await artIdSearch;
-    setError('');
-    setIDs(idMatch.objectIDs);
+  const getIDs = async (searchTerm) => {
+    try {
+      const idMatches = await getIdObject(searchTerm);
+      dispatch({ type: 'UPDATE_IDS', payload: idMatches });
+      setError('');
+    } catch (error) {
+      setError(error.message)
+    }
   }
 
+  const searchTerm = 'q=sunflower';
+  useEffect(() => {
+    getIDs(searchTerm);
+  }, []);
 
   const getSingleArtPiece = async (index) => {
     try {
-      const item = fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${index}`)
-      const response = await item;
-      const artPiece = await response.json();
-      setWall(wall => [...wall, artPiece]);
+      const item = await getArtByIndex(index)
+      dispatch({ type: 'UPDATE_WALL', payload: item })
+      setError('');
+    } catch (error) {
+      setError(error)
+    }
+  }
+
+  const updateWall = async () => {
+    const wallArtIDs = shuffleItems(state.IDs);
+    const limitedWallArt = wallArtIDs.slice(0, 7);
+    console.log('limited: ', limitedWallArt);
+    try {
+      const wallImages = await limitedWallArt.map(index => getSingleArtPiece(index))
+      return wallImages;
     } catch (error) {
       setError(error)
     }
   }
 
   useEffect(() => {
-    getIDs();
-  }, [])
-
-  useEffect(() => {
-    // getIDs();
-
-    ids.length && getSingleArtPiece(shuffleItems(ids)[0]);
-    ids.length && getSingleArtPiece(shuffleItems(ids)[1]);
-    ids.length && getSingleArtPiece(shuffleItems(ids)[2]);
-    ids.length && getSingleArtPiece(shuffleItems(ids)[3]);
-    ids.length && getSingleArtPiece(shuffleItems(ids)[4]);
-    ids.length && getSingleArtPiece(shuffleItems(ids)[5]);
-    ids.length && getSingleArtPiece(shuffleItems(ids)[6]);
-  }, [ids])
-
+    updateWall()
+  }, [state.IDs])
 
 
   return (
-    <div className="App">
-      <Header />
-      <section className='wall-container'>
-        <Wall artworks={wall} />
-      </section>
+    <GalleryContext.Provider value={state}>
+      <div className="App">
+        <Header></Header>
+        <Route exact path="/"
+          render={() => <Wall />}
+        />
+        <Route exact path='/:artPieceID' render={({ match }) => {
+          const { artPieceID } = match.params;
+          return <ArtDetails artPieceID={artPieceID} />
+        }} />
 
-//       <Route 
-//         exact path="/"
-//         render={() => <Wall artworks={wall} />}
-//       />
-      <Route exact path='/:artPieceID' render={({ match }) => {
-        const { artPieceID } = match.params;
-        return <ArtDetails artPieceID={artPieceID} />
-      }} />
-
-      {/* // {ids.length && console.log('Rendering IDs: ', ids)}
-      // {wall.length && console.log('WALL: ', wall)}
-      // {wall.length && <img src={wall[0].primaryImageSmall} />}
-      // {wall[1] && <img src={wall[1].primaryImageSmall} />}
-      // {wall[2] && <img src={wall[2].primaryImageSmall} />}
-      // {wall[3] && <img src={wall[3].primaryImageSmall} />}
-      // {wall[4] && <img src={wall[4].primaryImageSmall} />} */}
-    </div>
+      </div>
+    </GalleryContext.Provider>
   );
 }
 
