@@ -21,13 +21,7 @@ const initialState = {
 
 function App() {
   const [state, dispatch] = useReducer(galleryReducer, initialState)
-  //const { wall } = useContext(GalleryContext)
-  //const [wall, setWall] = useState([]);
-  //const [ids, setIDs] = useState([]);
   const [error, setError] = useState('');
-  //const [ artDetail, setArtDetail ] = useState({});
-  //const [ favorites, setFavorites ] = useState([]);
-  //const [ searchTerms, setSearchTerms ] = useState([]);
 
   const getIDs = async (searchTerm) => {
     try {
@@ -44,7 +38,6 @@ function App() {
     getIDs(searchTerm);
   }, []);
 
-
   const getSingleArtPiece = async (index) => {
     try {
       const item = await getArtByIndex(index)
@@ -54,9 +47,6 @@ function App() {
       setError(error)
     }
   }
-
-
-
 
   const updateWall = async () => {
     const wallArtIDs = shuffleItems(state.IDs);
@@ -68,10 +58,7 @@ function App() {
     } catch (error) {
       setError(error)
     }
-
   }
-
-
 
   useEffect(() => {
     updateWall()
