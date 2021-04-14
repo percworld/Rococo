@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import React, { useState, useEffect, useReducer } from 'react';
 import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
+import Header from '../Header/Header';
 import ArtDetails from '../ArtDetails/ArtDetails.js';
 import { getIdObject, getArtByIndex } from '../../apiCalls';
 import galleryReducer from '../../context/gallery-reducer';
@@ -68,6 +69,7 @@ function App() {
   return (
     <GalleryContext.Provider value={state}>
       <div className="App">
+        <Header></Header>
         <Route exact path="/"
           render={() => <Wall />}
         />
