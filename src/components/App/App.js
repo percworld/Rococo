@@ -32,9 +32,7 @@ function App() {
   const getIDs = async (searchTerm) => {
     try {
       const idMatches = await getIdObject(searchTerm);
-      console.log(idMatches)
       dispatch({ type: 'UPDATE_IDS', payload: idMatches });
-      console.log('STATE: ', state)
       setError('');
     } catch (error) {
       setError(error.message)
@@ -46,10 +44,11 @@ function App() {
     getIDs(searchTerm);
   }, []);
 
+
   const getSingleArtPiece = async (index) => {
     try {
       const item = await getArtByIndex(index)
-      // setWall(wall => [...wall, item]);
+      dispatch({ type: 'UPDATE_WALL', payload: item })
       setError('');
     } catch (error) {
       setError(error)
@@ -58,37 +57,38 @@ function App() {
 
 
 
-  // const filterWallArt = wallArt => wallArt.slice(0, 7)
-  const createDisplay = async () => {
-    const wallArtIDs = shuffleItems(state.IDs);
-    console.log(wallArtIDs)
-    const limitedWallArt = wallArtIDs.slice(0, 7);
-    console.log(limitedWallArt)
-    const wallImages = await limitedWallArt.map(index => getSingleArtPiece(index))
-    return wallImages;
-  }
 
   const updateWall = async () => {
-    const wallArt = await createDisplay()
-    dispatch({ type: 'UPDATE_WALL', payload: wallArt })
+    const wallArtIDs = shuffleItems(state.IDs);
+    const limitedWallArt = wallArtIDs.slice(0, 7);
+    console.log('limited: ', limitedWallArt);
+    try {
+      const wallImages = await limitedWallArt.map(index => getSingleArtPiece(index))
+      return wallImages;
+    } catch (error) {
+      setError(error)
+    }
+
   }
 
+
+
+  useEffect(() => {
+    updateWall()
+  }, [state.IDs])
 
 
   return (
-    <GalleryContext.Provider value={[state, dispatch]}>
+    <GalleryContext.Provider value={state}>
       <div className="App">
-        {/* <Route
-          exact path="/"
+        <Route exact path="/"
           render={() => <Wall />}
-        /> */}
+        />
         <Route exact path='/:artPieceID' render={({ match }) => {
           const { artPieceID } = match.params;
           return <ArtDetails artPieceID={artPieceID} />
         }} />
 
-        {/* { ids.length && console.log('Rendering IDs: ', ids)}
-          { wall.length && console.log('WALL: ', wall)} */}
       </div>
     </GalleryContext.Provider>
   );
