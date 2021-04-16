@@ -4,10 +4,10 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  border-bottom: solid black 1px;
+  //border-bottom: solid black 1px;
 
   .logo-container {
-    width: 100px;
+    width: 12em;
     text-align: center;
   }
 
@@ -20,17 +20,24 @@ header {
     }
   }
 
-  h2 {
+  .user-buttons {
+    visibility: none;
+    height: 1em;
+  }
+
+  .favorites-button {
     @include headerButton;
-    font-size: 20px;
-    margin-top: 22px;
+    font-size: 14px;
+    margin-top: 12px;
     font-weight:  100;
-    text-transform: none;
+    //text-transform: none;
     padding: 0;
+
 
     &:hover {
       @include hoverButton;
-      margin-top: 20px;
+      margin-top: 12px;
+      font-size: 15px;
     }
   }
 

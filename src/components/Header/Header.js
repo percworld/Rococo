@@ -6,11 +6,11 @@ const Header = () => {
   return (
     <header>
       <button className="logo-container">
-        <h1>Salon</h1>
+        <h1>Roccoco</h1>
       </button>
-      <button className="user-buttons">
-        <h2>favorites</h2>
-      </button>
+      <div className="user-buttons">
+        <button className="favorites-button">salon exhibition of my favorites</button>
+      </div>
     </header>
   )
 }
