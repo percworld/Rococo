@@ -22,13 +22,16 @@ const ArtDetails = ({ artPieceID }) => {
   return (
     <>
       <section className="art-details">
-        {console.log(selectedArt)}
+        {console.log(selectedArt.objectID)}
         <img className="details-image" src={selectedArt.primaryImage} alt={selectedArt.title} />
         <aside>
-          <h3>"{selectedArt.title}"</h3>
-          <p>c. {selectedArt.objectBeginDate}-{selectedArt.objectEndDate}</p>
-          <p>{selectedArt.artistDisplayName}</p>
-          <p>{selectedArt.medium}</p>
+          <article className="info-card">
+            <h3>"{selectedArt.title}"</h3>
+            <p>c. {selectedArt.objectBeginDate}-{selectedArt.objectEndDate}</p>
+            <p>{selectedArt.artistDisplayName}</p>
+            <p>{selectedArt.medium}</p>
+            <button className="add-favorite">Add to Favorites</button>
+          </article>
         </aside>
       </section>
     </>
