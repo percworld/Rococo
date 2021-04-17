@@ -12,7 +12,7 @@ import GalleryContext from '../../context/gallery-context';
 
 const initialState = {
   wall: [],
-  favorites: [],
+  favorites: [506088],
   terms: [],
   single: {},
   IDs: [],
@@ -77,6 +77,12 @@ function App() {
     dispatch({ type: 'CLEAR_WALL' });
 
   }
+  const addFavorite = (itemID) => {
+    dispatch({ type: 'ADD_FAVORITE', payload: itemID })
+  }
+  const deleteFavorite = (itemID) => {
+    dispatch({ type: 'DELETE_FAVORITE', payload: itemID })
+  }
 
   return (
     <GalleryContext.Provider value={state}>
@@ -87,7 +93,7 @@ function App() {
         />
         <Route exact path='/:artPieceID' render={({ match }) => {
           const { artPieceID } = match.params;
-          return <ArtDetails artPieceID={artPieceID} />
+          return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />
         }} />
 
       </div>

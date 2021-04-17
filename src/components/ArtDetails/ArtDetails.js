@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './ArtDetails.scss';
+import GalleryContext from '../../context/gallery-context';
 
-const ArtDetails = ({ artPieceID }) => {
+const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
+  const { favorites } = useContext(GalleryContext)
   const [selectedArt, setSelectedArt] = useState('');
 
   const getSingleArtPiece = async () => {
@@ -16,9 +18,7 @@ const ArtDetails = ({ artPieceID }) => {
     }
   }
 
-  const addFavorite = () => {
-    //dispatch({ type: 'ADD_FAVORITE', payload: selectedArt.objectID })
-  }
+
 
   useEffect(() => {
     getSingleArtPiece();
@@ -34,7 +34,8 @@ const ArtDetails = ({ artPieceID }) => {
             <p>c. {selectedArt.objectBeginDate}-{selectedArt.objectEndDate}</p>
             <p>{selectedArt.artistDisplayName}</p>
             <p>{selectedArt.medium}</p>
-            <button className="add-favorite" onClick={() => addFavorite()}>Add to Favorites</button>
+            <button className="add-favorite" onClick={() => addFavorite(selectedArt.objectID)}>Add to Favorites</button>
+            <button className="add-favorite" onClick={() => deleteFavorite(selectedArt.objectID)}>Add to Favorites</button>
           </article>
         </aside>
       </section>
