@@ -1,16 +1,18 @@
 .App {
  background-image: url('../../rococo_blue_texture.jpg');
- //background-repeat: no-repeat;
  background-size: cover;
- 
- 
+ background-position: center;
+ height: 73em; 
 }
 
 .wall-container {
   margin: 0 auto;
   width: 60%;
-  height: 90%
-  
+  height: 90%  
+}
+
+.overflow {
+
 }
 
 @media only screen and (max-width: 500px) {

@@ -11,7 +11,7 @@ const compareDimensions = (a, b) => {
     const sizeOf = img => {
       heightA = img.height;
       widthA = img.width;
-      console.log(`A - HxW ${heightA}x${widthA}`);
+      //console.log(`A - HxW ${heightA}x${widthA}`);
     }
     sizeOf(imageA);
   }
@@ -19,13 +19,16 @@ const compareDimensions = (a, b) => {
     const sizeOf = img => {
       heightB = img.height;
       widthB = img.width;
-      console.log(`B - HxW ${heightB}x${widthB}`);
+      //console.log(`B - HxW ${heightB}x${widthB}`);
     }
     sizeOf(imageB);
   }
   imageA.src = a.primaryImageSmall;
   imageB.src = b.primaryImageSmall;
-  return (heightA + widthA) - (heightB + widthB);
+  if (heightA > heightB) {
+    return widthA - widthB;
+  } else return widthB - widthA
+
 }
 const Wall = () => {
   const { wall } = useContext(GalleryContext);
@@ -41,7 +44,7 @@ const Wall = () => {
   const artworksToDisplay = sortedWallArt.map((artwork, index) => {
     return (
       <Artwork
-        wallLocation={`div${index}`}
+        wallLocation={`div${index + 1}`}
         key={artwork.objectID}
         id={artwork.objectID}
         url={artwork.primaryImageSmall}

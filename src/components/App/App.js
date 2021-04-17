@@ -27,6 +27,7 @@ function App() {
 
   const getIDs = async (searchTerm) => {
     try {
+      dispatch({ type: 'UPDATE_IDS', payload: [] });
       const idMatches = await getIdObject(searchTerm);
       dispatch({ type: 'UPDATE_IDS', payload: idMatches });
       setError('');
@@ -53,9 +54,10 @@ function App() {
   }
 
   const updateWall = async () => {
+    dispatch({ type: 'CLEAR_WALL' });
     const wallArtIDs = shuffleItems(state.IDs);
     console.log('full: ', wallArtIDs.length);
-    const limitedWallArt = wallArtIDs.slice(0, 7);
+    const limitedWallArt = wallArtIDs.slice(0, 11);
     //console.log('limited: ', limitedWallArt);
     // get image sizes and call a function to sort them in order
 
@@ -71,11 +73,15 @@ function App() {
     updateWall()
   }, [state.IDs])
 
+  const viewFavorites = () => {
+    dispatch({ type: 'CLEAR_WALL' });
+
+  }
 
   return (
     <GalleryContext.Provider value={state}>
       <div className="App">
-        <Header></Header>
+        <Header getIDs={getIDs} viewFavorites={viewFavorites}></Header>
         <Route exact path="/"
           render={() => <Wall />}
         />

@@ -1,13 +1,18 @@
 import React from 'react';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
-
+const Header = ({ getIDs, viewFavorites }) => {
+  const searchTerm = 'q=water';
   return (
     <header>
-      <button className="logo-container">Roccoco de l'eau</button>
+      <Link to='/'>
+        <button className="logo-container" onClick={() => getIDs(searchTerm)}>Roccoco de l'eau</button>
+      </Link>
       <div className="user-buttons">
-        <button className="favorites-button">My favorites</button>
+        <Link to='/'>
+          <button className="favorites-button" onClick={() => viewFavorites()}>My favorites</button>
+        </Link>
       </div>
     </header>
   )

@@ -10,6 +10,8 @@ const galleryReducer = (state, action) => {
             return { ...state, featured: action.payload };
         case 'UPDATE_IDS':
             return { ...state, IDs: action.payload }
+        case 'CLEAR_WALL':
+            return { ...state, wall: [] }
         default:
             return state;
     }
