@@ -33,13 +33,13 @@ const compareDimensions = (a, b) => {
 const Wall = () => {
   const { wall } = useContext(GalleryContext);
   const sizeOrder = items => {
-    console.log('WALL: ', items)
+    //console.log('WALL: ', items)
     return items.sort(compareDimensions);
   }
 
 
   const sortedWallArt = sizeOrder(wall);
-  console.log(sortedWallArt)
+  //console.log(sortedWallArt)
 
   const artworksToDisplay = sortedWallArt.map((artwork, index) => {
     return (

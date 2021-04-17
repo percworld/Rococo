@@ -23,20 +23,19 @@ const initialState = {
 
 function App() {
   const [state, dispatch] = useReducer(galleryReducer, initialState)
-  const [error, setError] = useState('');
 
   const getIDs = async (searchTerm) => {
     try {
       dispatch({ type: 'UPDATE_IDS', payload: [] });
       const idMatches = await getIdObject(searchTerm);
       dispatch({ type: 'UPDATE_IDS', payload: idMatches });
-      setError('');
+      dispatch({ type: 'ERROR', payload: '' })
     } catch (error) {
-      setError(error.message)
+      dispatch({ type: 'ERROR', payload: 'error' })
     }
   }
 
-  const searchTerm = 'q=watercolor';
+  const searchTerm = 'q=paris';
   useEffect(() => {
     getIDs(searchTerm);
   }, []);
@@ -47,9 +46,9 @@ function App() {
     try {
       const item = await getArtByIndex(index);
       dispatch({ type: 'UPDATE_WALL', payload: item })
-      setError('');
+      dispatch({ type: 'ERROR', payload: '' });
     } catch (error) {
-      setError(error)
+      dispatch({ type: 'ERROR', payload: error });
     }
   }
 
@@ -59,13 +58,13 @@ function App() {
     console.log('full: ', wallArtIDs.length);
     const limitedWallArt = wallArtIDs.slice(0, 11);
     //console.log('limited: ', limitedWallArt);
-    // get image sizes and call a function to sort them in order
 
     try {
       const wallImages = await limitedWallArt.map(index => getSingleArtPiece(index))
+      dispatch({ type: 'ERROR', payload: '' });
       return wallImages;
     } catch (error) {
-      setError(error)
+      dispatch({ type: 'ERROR', payload: error });
     }
   }
 
@@ -90,9 +89,7 @@ function App() {
     <GalleryContext.Provider value={state}>
       <div className="App">
         <Header getIDs={getIDs} viewFavorites={viewFavorites}></Header>
-        <Route exact path="/"
-          render={() => <Wall />}
-        />
+        <Route exact path="/" component={Wall} />
         <Route exact path='/:artPieceID' render={({ match }) => {
           const { artPieceID } = match.params;
           return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />
