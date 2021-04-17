@@ -4,34 +4,56 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  border-bottom: solid black 1px;
+  //border-bottom: solid black 1px;
 
   .logo-container {
-    width: 100px;
+    width: 11em;
     text-align: center;
+    @include headerButton;
+    font-size: 31px;
   }
 
   h1 {
     @include headerButton;
-    font-size: 35px;
+    font-size: 31px;
+    
 
     &:hover {
       @include hoverButton;
     }
   }
 
-  h2 {
+  .user-buttons {
+    visibility: none;
+    height: 1em;
+  }
+
+  .favorites-button {
     @include headerButton;
-    font-size: 20px;
-    margin-top: 22px;
+    font-size: 16px;
+    margin-top: 12px;
     font-weight:  100;
-    text-transform: none;
-    padding: 0;
+    //text-transform: none;
+    padding: 1vw;
+
 
     &:hover {
       @include hoverButton;
-      margin-top: 20px;
+      margin-top: 12px;
+      font-size: 15px;
     }
   }
 
+}
+
+@media only screen and (max-width: 700px) {
+  
+  .logo-container {
+    font-size: 20px !important;
+    width: 10em !important;
+  }
+
+  .user-buttons {
+    margin-bottom: 3em;
+  }
 }

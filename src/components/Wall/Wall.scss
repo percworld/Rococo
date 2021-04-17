@@ -1,24 +1,22 @@
+.salonTemplate {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  width: 80%;
+  max-height: 900px;
+  margin: 15px auto;
+  margin-top: -5em;
+}
 // .salonTemplate {
 //   display: grid;
 //   grid-template-columns: repeat(8, 1fr);
 //   grid-template-rows: repeat(8, .25fr);
 //   grid-column-gap: 35px;
 //   grid-row-gap: 35px;
-//
+
 //   width: 50%;
 //   height: 90%;
 //   margin: 0 auto;
 // }
-
-
-.salonTemplate {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-
-  width: 95%;
-  max-height: 900px;
-  margin: 15px auto;
-}

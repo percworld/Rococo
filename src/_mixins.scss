@@ -1,12 +1,14 @@
 @mixin headerButton {
-  background-color: black;
-  color: white;
+  background-color: #08090A;
+  color: #EAF2E3;
+  border-radius: 16px;
 }
 
 @mixin hoverButton {
-  background-color: white;
-  color: black;
-  border: solid black 1px;
+  background-color: #EAF2E3;
+  color: #08090A;
+  border: solid #08090A 1px;
+  border-radius: 16px;
 }
 
 

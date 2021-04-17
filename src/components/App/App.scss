@@ -1,8 +1,25 @@
 .App {
-
+ background-image: url('../../rococo_blue_texture.jpg');
+ background-size: cover;
+ background-position: center;
+ height: 73em; 
 }
 
 .wall-container {
   margin: 0 auto;
-  width: 80%;
+  width: 60%;
+  height: 90%  
+}
+
+.overflow {
+
+}
+
+@media only screen and (max-width: 500px) {
+  .App {
+    background-image: url('../../rococo_mobile_art.jpg');
+    background-size: cover;
+    background-repeat: repeat-y;
+    height: 71em;
+  }
 }
