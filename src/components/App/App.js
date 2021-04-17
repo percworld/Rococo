@@ -74,12 +74,14 @@ function App() {
   }, [state.IDs])
 
   const viewFavorites = () => {
-    dispatch({ type: 'CLEAR_WALL' });
-
+    dispatch({ type: 'UPDATE_IDS', payload: [] });
+    dispatch({ type: 'UPDATE_IDS', payload: state.favorites });
   }
+
   const addFavorite = (itemID) => {
     dispatch({ type: 'ADD_FAVORITE', payload: itemID })
   }
+
   const deleteFavorite = (itemID) => {
     dispatch({ type: 'DELETE_FAVORITE', payload: itemID })
   }
