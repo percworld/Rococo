@@ -4,6 +4,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  
   //border-bottom: solid black 1px;
 
   .logo-container {
@@ -11,6 +12,7 @@ header {
     text-align: center;
     @include headerButton;
     font-size: 31px;
+    z-index: 1;
   }
 
   h1 {

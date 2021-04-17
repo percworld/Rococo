@@ -12,7 +12,7 @@ import GalleryContext from '../../context/gallery-context';
 
 const initialState = {
   wall: [],
-  favorites: [506088],
+  favorites: [], //506088
   terms: [],
   single: {},
   IDs: [],
