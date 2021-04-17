@@ -16,6 +16,10 @@ const ArtDetails = ({ artPieceID }) => {
     }
   }
 
+  const addFavorite = () => {
+    //dispatch({ type: 'ADD_FAVORITE', payload: selectedArt.objectID })
+  }
+
   useEffect(() => {
     getSingleArtPiece();
   }, [])
@@ -30,7 +34,7 @@ const ArtDetails = ({ artPieceID }) => {
             <p>c. {selectedArt.objectBeginDate}-{selectedArt.objectEndDate}</p>
             <p>{selectedArt.artistDisplayName}</p>
             <p>{selectedArt.medium}</p>
-            <button className="add-favorite">Add to Favorites</button>
+            <button className="add-favorite" onClick={() => addFavorite()}>Add to Favorites</button>
           </article>
         </aside>
       </section>
