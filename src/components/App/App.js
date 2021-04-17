@@ -35,14 +35,16 @@ function App() {
     }
   }
 
-  const searchTerm = 'q=sunflower';
+  const searchTerm = 'q=watercolor';
   useEffect(() => {
     getIDs(searchTerm);
   }, []);
 
+
+
   const getSingleArtPiece = async (index) => {
     try {
-      const item = await getArtByIndex(index)
+      const item = await getArtByIndex(index);
       dispatch({ type: 'UPDATE_WALL', payload: item })
       setError('');
     } catch (error) {
@@ -52,8 +54,11 @@ function App() {
 
   const updateWall = async () => {
     const wallArtIDs = shuffleItems(state.IDs);
+    console.log('full: ', wallArtIDs.length);
     const limitedWallArt = wallArtIDs.slice(0, 7);
-    console.log('limited: ', limitedWallArt);
+    //console.log('limited: ', limitedWallArt);
+    // get image sizes and call a function to sort them in order
+
     try {
       const wallImages = await limitedWallArt.map(index => getSingleArtPiece(index))
       return wallImages;

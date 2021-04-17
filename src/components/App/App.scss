@@ -12,3 +12,12 @@
   height: 90%
   
 }
+
+@media only screen and (max-width: 500px) {
+  .App {
+    background-image: url('../../rococo_mobile_art.jpg');
+    background-size: cover;
+    background-repeat: repeat-y;
+    height: 71em;
+  }
+}
