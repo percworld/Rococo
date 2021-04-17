@@ -1,9 +1,26 @@
+@import '../../index.scss';
+
 * {
-  // border: 1px solid red;
+ // border: 1px solid red;
 }
 
+.add-favorite {
+    @include headerButton;
+    width: 15vw;
+    font-size: 13px;
+    margin-top: 12px;
+    margin-left: 9rem;
+    font-weight:  100;
+    //text-transform: none;
+    padding: .5vw;
+
+    &:hover {
+      @include hoverButton;
+    }
+  }
+
 .art-details {
-  height: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,10 +28,9 @@
 }
 
 .details-image {
-  height: 90%;
-  max-height: 76vh;
-  width: auto;
-
+  max-height: 80%;
+  // max-height: 67vh;
+  // width: auto;
   // margin-top: 1%;
 }
 
@@ -26,9 +42,18 @@ aside {
   align-items: left;
   margin: 0 auto;
   text-align: left;
-  font-size: 18px;
+  font-size: 14px;
+  //text-decoration: italic;
   //border: 1px solid black;
   padding-bottom: 1em;
+}
+
+.info-card {
+  margin-top: 2em;
+  background-color: #EAF2E3;
+  width: 82%;
+  height: 16vh;
+  padding: .25em;
 }
 
 aside > h3,
@@ -42,17 +67,24 @@ aside > p {
   }
 
   .details-image {
-    max-width: 61%;
-    width: auto;
+    max-width: 100%;   
     height: auto;
     //margin-bottom: 3%;
+  }
+  .info-card {
+    height: 18vh;
+    font-size: 17px;
+  }
+
+  .add-favorite {
+    width: 16vw;
   }
 
   aside {
     width: 90%;
     font-size: 2.1vh;
     margin-top: 1vh;
-    margin-left: 22vw;
+    margin-left: 10vw;
   }
 }
 
@@ -63,13 +95,25 @@ aside > p {
     
   }
   aside {
-    background-color: #BA8F95;
-    margin-left: 0;
+    //background-color: #BA8F95;
+    margin-left: -5rem;
     text-align: center;
     width: 100%;
     margin-top: 0;
     height: 9em;
     color: #08090A;
     padding-left: 2em;
+    font-size: 12px;
+  }  
+  .add-favorite {
+    width: 100%;
+    margin-top: 2px;
+    margin-left: 1rem;
   }
+  .info-card {
+    margin-top: 8px;
+    height: 42rem;
+    width: 55rem;  
+  }
+
 }

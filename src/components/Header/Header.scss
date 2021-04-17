@@ -4,13 +4,15 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  
   //border-bottom: solid black 1px;
 
   .logo-container {
-    width: 11em;
+    width: 9em;
     text-align: center;
     @include headerButton;
     font-size: 31px;
+    z-index: 1;
   }
 
   h1 {

@@ -30,8 +30,8 @@ img {
 .div3 { grid-area: 5 / 9 / 9 / 11; align-self: start; }
 .div4 { grid-area: 5 / 4 / 9 / 6; align-self: start;}
 .div5 { grid-area: 4 / 2 / 6 / 4; align-self: start; }
-.div6 { grid-area: 1 / 1 / 4 / 3; align-self: end; }
-.div7 { grid-area: 2 / 3 / 4 / 6; align-self: end;}
+.div6 { grid-area: 1 / 1 / 4 / 3; align-self: end; z-index: 0;}
+.div7 { grid-area: 2 / 3 / 4 / 6; align-self: end; z-index: 0;}
 .div8 { grid-area: 4 / 6 / 7 / 9; align-self: start;}
 .div9 { grid-area: 6 / 1 / 9 / 4; align-self: start;}
 .div10 { grid-area: 7 / 4 / 9 / 6; align-self: start; }
