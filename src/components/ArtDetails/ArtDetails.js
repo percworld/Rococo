@@ -34,8 +34,8 @@ const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
             <p>c. {selectedArt.objectBeginDate}-{selectedArt.objectEndDate}</p>
             <p>{selectedArt.artistDisplayName}</p>
             <p>{selectedArt.medium}</p>
-            <button className="add-favorite" onClick={() => addFavorite(selectedArt.objectID)}>Add to Favorites</button>
-            <button className="add-favorite" onClick={() => deleteFavorite(selectedArt.objectID)}>Add to Favorites</button>
+            {!favorites.includes(selectedArt.objectID) && <button className="add-favorite" onClick={() => addFavorite(selectedArt.objectID)}>Add to Favorites</button>}
+            {favorites.includes(selectedArt.objectID) && <button className="add-favorite" onClick={() => deleteFavorite(selectedArt.objectID)}>Remove from Favorites</button>}
           </article>
         </aside>
       </section>
