@@ -5,8 +5,8 @@ export const getIdObject = async (searchTerm) => {
   return newList.objectIDs;
 }
 
-export const getArtByIndex = async (index) => {
-  const artPiece = await fetch(`${url}objects/${index}`)
+export const getArtByID = async (ID) => {
+  const artPiece = await fetch(`${url}objects/${ID}`)
   const newArt = await artPiece.json();
   return newArt;
 }

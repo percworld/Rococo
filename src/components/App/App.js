@@ -5,7 +5,7 @@ import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
 import Header from '../Header/Header';
 import ArtDetails from '../ArtDetails/ArtDetails.js';
-import { getIdObject, getArtByIndex } from '../../apiCalls';
+import { getIdObject, getArtByID } from '../../apiCalls';
 import galleryReducer from '../../context/gallery-reducer';
 import GalleryContext from '../../context/gallery-context';
 
@@ -48,9 +48,9 @@ function App() {
 
 
 
-  const getSingleArtPiece = async (index) => {
+  const getSingleArtPiece = async (artID) => {
     try {
-      const item = await getArtByIndex(index);
+      const item = await getArtByID(artID);
       dispatch({ type: 'UPDATE_WALL', payload: item })
       dispatch({ type: 'ERROR', payload: '' });
     } catch (error) {
@@ -66,7 +66,7 @@ function App() {
     //console.log('limited: ', limitedWallArt);
 
     try {
-      const wallImages = await limitedWallArt.map(index => getSingleArtPiece(index))
+      const wallImages = await limitedWallArt.map(artID => getSingleArtPiece(artID))
       dispatch({ type: 'ERROR', payload: '' });
       return wallImages;
     } catch (error) {

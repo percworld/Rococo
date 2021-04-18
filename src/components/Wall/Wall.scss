@@ -9,6 +9,13 @@
   margin: 15px auto;
   margin-top: -5em;
 }
+
+@media only screen and (max-width: 550px) {
+  .salonTemplate {
+    width: 93%;
+    height: 100em; 
+  }
+}
 // .salonTemplate {
 //   display: grid;
 //   grid-template-columns: repeat(8, 1fr);
