@@ -13,7 +13,7 @@ const galleryReducer = (state, action) => {
         case 'CLEAR_WALL':
             return { ...state, wall: [] }
         case 'DELETE_FAVORITE':
-            return { ...state, favorites: state.favorites.filter(favorite => favorite != action.payload) }
+            return { ...state, favorites: state.favorites.filter(favorite => favorite !== action.payload) }
         case 'ERROR':
             return { ...state, error: action.payload };
         default:

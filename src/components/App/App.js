@@ -1,6 +1,6 @@
 import './App.scss';
 import { Route } from 'react-router-dom';
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
 import Header from '../Header/Header';
@@ -13,7 +13,7 @@ import GalleryContext from '../../context/gallery-context';
 const initialState = {
   wall: [],
   favorites: [], //506088
-  terms: [],
+  terms: ['canvas', 'painting', 'oil'],
   single: {},
   IDs: [],
   error: ''
@@ -29,15 +29,21 @@ function App() {
       dispatch({ type: 'UPDATE_IDS', payload: [] });
       const idMatches = await getIdObject(searchTerm);
       dispatch({ type: 'UPDATE_IDS', payload: idMatches });
+      console.log(idMatches)
       dispatch({ type: 'ERROR', payload: '' })
     } catch (error) {
       dispatch({ type: 'ERROR', payload: 'error' })
     }
   }
 
-  const searchTerm = 'q=paris';
+  const searchTerm = () => {
+    return state.terms.reduce((query, term) => {
+      query = query.concat(`q=${term}&`);
+      return query;
+    }, '')
+  }
   useEffect(() => {
-    getIDs(searchTerm);
+    getIDs(searchTerm());
   }, []);
 
 

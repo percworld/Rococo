@@ -7,7 +7,7 @@ const Artwork = ({ id, url, wallLocation }) => {
 
   return (
     <Link to={`/${id}`} data={id} className={`img-container ${wallLocation}`}>
-      <img src={url} />
+      <img src={url} alt={`searched art from the Met number ${id}`} />
     </Link>
   )
 

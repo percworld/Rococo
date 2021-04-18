@@ -61,6 +61,7 @@ aside > p {
   width: 90%;
 }
 
+// MEDIA - DESKTOP SHRINK
 @media only screen and (max-width: 1050px) {
   .art-details {
     flex-direction: column;
@@ -88,6 +89,7 @@ aside > p {
   }
 }
 
+// MEDIA - TABLET
 @media only screen and (max-width: 750px) {
   .details-image {
     width: 60em;

@@ -4,8 +4,6 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  
-  //border-bottom: solid black 1px;
 
   .logo-container {
     width: 7em;
@@ -19,7 +17,6 @@ header {
     @include headerButton;
     font-size: 31px;
     
-
     &:hover {
       @include hoverButton;
     }
@@ -38,7 +35,6 @@ header {
     //text-transform: none;
     padding: 1vw;
 
-
     &:hover {
       @include hoverButton;
       margin-top: 12px;
@@ -48,6 +44,7 @@ header {
 
 }
 
+// MEDIA - TABLET
 @media only screen and (max-width: 700px) {
   
   .logo-container {
