@@ -1,6 +1,6 @@
 import './App.scss';
 import { Route } from 'react-router-dom';
-import React, { useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { shuffleItems } from '../../utilities.js';
 import Wall from '../Wall/Wall';
 import Header from '../Header/Header';
@@ -22,7 +22,8 @@ const initialState = {
 
 
 function App() {
-  const [state, dispatch] = useReducer(galleryReducer, initialState)
+  const [state, dispatch] = useReducer(galleryReducer, initialState);
+  const [loading, setLoading] = useState(true);
 
   const getIDs = async (searchTerm) => {
     try {
@@ -75,7 +76,14 @@ function App() {
   }
 
   useEffect(() => {
-    updateWall()
+    let mounted = true;
+    updateWall();
+    if (mounted) {
+      setLoading(false);
+    }
+    return function cleanup() {
+      mounted = false;
+    }
   }, [state.IDs])
 
   const viewFavorites = () => {
