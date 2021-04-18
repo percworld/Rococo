@@ -30,7 +30,7 @@ function App() {
       dispatch({ type: 'UPDATE_IDS', payload: [] });
       const idMatches = await getIdObject(searchTerm);
       dispatch({ type: 'UPDATE_IDS', payload: idMatches });
-      console.log(idMatches)
+      console.log('# of IDs: ', idMatches.length)
       dispatch({ type: 'ERROR', payload: '' })
     } catch (error) {
       dispatch({ type: 'ERROR', payload: 'error' })
@@ -43,9 +43,10 @@ function App() {
       return query;
     }, '')
   }
+
   useEffect(() => {
     getIDs(searchTerm());
-  }, []);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 
 
@@ -62,7 +63,7 @@ function App() {
   const updateWall = async () => {
     dispatch({ type: 'CLEAR_WALL' });
     const wallArtIDs = shuffleItems(state.IDs);
-    console.log('full: ', wallArtIDs.length);
+    //console.log('full: ', wallArtIDs.length);
     const limitedWallArt = wallArtIDs.slice(0, 11);
     //console.log('limited: ', limitedWallArt);
 
@@ -84,7 +85,7 @@ function App() {
     return function cleanup() {
       mounted = false;
     }
-  }, [state.IDs])
+  }, [state.IDs]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const viewFavorites = () => {
     dispatch({ type: 'UPDATE_IDS', payload: [] });

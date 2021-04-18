@@ -27,7 +27,7 @@ const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
     return function cleanup() {
       mounted = false;
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
