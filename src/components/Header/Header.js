@@ -12,6 +12,9 @@ const Header = ({ getIDs, searchTerm, viewFavorites }) => {
         <Link to='/'>
           <button className="favorites-button" onClick={() => viewFavorites()}>My favorites</button>
         </Link>
+        <Link to='/terms'>
+          <button className="favorites-button" >Search Terms</button>
+        </Link>
       </div>
     </header>
   )

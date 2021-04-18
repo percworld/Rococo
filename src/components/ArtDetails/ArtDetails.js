@@ -2,9 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import './ArtDetails.scss';
 import GalleryContext from '../../context/gallery-context';
 import { getArtByID } from '../../apiCalls';
+import { Link } from 'react-router-dom';
 
 const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
-  const { favorites } = useContext(GalleryContext)
+  const { favorites, error } = useContext(GalleryContext)
   const [selectedArt, setSelectedArt] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +32,7 @@ const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
 
   return (
     <>
-      {loading ? <h1>Loading...</h1> :
+      {loading ? <h1>Loading...</h1> : error ? <h1>error</h1> :
         <section className="art-details">
           <img className="details-image" src={selectedArt.primaryImage} alt={selectedArt.title} />
           <aside>
@@ -42,6 +43,7 @@ const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
               <p>{selectedArt.medium}</p>
               {!favorites.includes(selectedArt.objectID) && <button className="add-favorite" onClick={() => addFavorite(selectedArt.objectID)}>Add to Favorites</button>}
               {favorites.includes(selectedArt.objectID) && <button className="add-favorite" onClick={() => deleteFavorite(selectedArt.objectID)}>Remove from Favorites</button>}
+              <Link to='/'><button className="add-favorite">Go Back</button></Link>
             </article>
           </aside>
         </section>}

@@ -1,10 +1,11 @@
 import './App.scss';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import React, { useState, useEffect, useReducer } from 'react';
-import { shuffleItems } from '../../utilities.js';
+import { shuffleItems } from '../../utilities';
 import Wall from '../Wall/Wall';
 import Header from '../Header/Header';
-import ArtDetails from '../ArtDetails/ArtDetails.js';
+import ArtDetails from '../ArtDetails/ArtDetails';
+import Terms from '../Terms/Terms';
 import { getIdObject, getArtByID } from '../../apiCalls';
 import galleryReducer from '../../context/gallery-reducer';
 import GalleryContext from '../../context/gallery-context';
@@ -27,13 +28,13 @@ function App() {
 
   const getIDs = async (searchTerm) => {
     try {
-      dispatch({ type: 'UPDATE_IDS', payload: [] });
+      setIDs([]);
       const idMatches = await getIdObject(searchTerm);
-      dispatch({ type: 'UPDATE_IDS', payload: idMatches });
+      setIDs(idMatches);
       console.log('# of IDs: ', idMatches.length)
-      dispatch({ type: 'ERROR', payload: '' })
+      setError('')
     } catch (error) {
-      dispatch({ type: 'ERROR', payload: 'error' })
+      setError(error)
     }
   }
 
@@ -48,15 +49,26 @@ function App() {
     getIDs(searchTerm());
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  const setError = (error) => {
+    dispatch({ type: 'ERROR', payload: error })
+  }
+
+  const setIDs = (newIDs) => {
+    dispatch({ type: 'UPDATE_IDS', payload: newIDs });
+  }
+
+  const updateSearch = (terms) => {
+    dispatch({ type: 'UPDATE_TERMS', payload: terms })
+  }
 
 
   const getSingleArtPiece = async (artID) => {
     try {
       const item = await getArtByID(artID);
       dispatch({ type: 'UPDATE_WALL', payload: item })
-      dispatch({ type: 'ERROR', payload: '' });
+      setError('');
     } catch (error) {
-      dispatch({ type: 'ERROR', payload: error });
+      setError(error);
     }
   }
 
@@ -66,13 +78,12 @@ function App() {
     //console.log('full: ', wallArtIDs.length);
     const limitedWallArt = wallArtIDs.slice(0, 11);
     //console.log('limited: ', limitedWallArt);
-
     try {
       const wallImages = await limitedWallArt.map(artID => getSingleArtPiece(artID))
-      dispatch({ type: 'ERROR', payload: '' });
+      setError('');
       return wallImages;
     } catch (error) {
-      dispatch({ type: 'ERROR', payload: error });
+      setError(error);
     }
   }
 
@@ -88,8 +99,8 @@ function App() {
   }, [state.IDs]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const viewFavorites = () => {
-    dispatch({ type: 'UPDATE_IDS', payload: [] });
-    dispatch({ type: 'UPDATE_IDS', payload: state.favorites });
+    setIDs([]);
+    setIDs([state.favorites]);
   }
 
   const addFavorite = (itemID) => {
@@ -102,14 +113,17 @@ function App() {
 
   return (
     <GalleryContext.Provider value={state}>
-      <div className="App">
+      <div className="App">`
+      `
         <Header getIDs={getIDs} searchTerm={searchTerm} viewFavorites={viewFavorites}></Header>
-        {loading ? <h1>Loading...</h1> : <Route exact path="/" component={Wall} />}
-        <Route exact path='/:artPieceID' render={({ match }) => {
-          const { artPieceID } = match.params;
-          return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />
-        }} />
-
+        <Switch>
+          {loading ? <h1>Loading...</h1> : <Route exact path="/" component={Wall} />}
+          <Route exact path='/terms' component={Terms}></Route>
+          <Route path='/:artPieceID' render={({ match }) => {
+            const { artPieceID } = match.params;
+            return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />
+          }} />
+        </Switch>
       </div>
     </GalleryContext.Provider>
   );
