@@ -1,9 +1,5 @@
 @import '../../index.scss';
 
-* {
- // border: 1px solid red;
-}
-
 .add-favorite {
     @include headerButton;
     width: 15vw;
@@ -11,7 +7,6 @@
     margin-top: 12px;
     margin-left: 9rem;
     font-weight:  100;
-    //text-transform: none;
     padding: .5vw;
 
     &:hover {
@@ -28,10 +23,7 @@
 }
 
 .details-image {
-  max-height: 80%;
-  // max-height: 67vh;
-  // width: auto;
-  // margin-top: 1%;
+  max-height: 70%;
 }
 
 aside {
@@ -42,17 +34,15 @@ aside {
   align-items: left;
   margin: 0 auto;
   text-align: left;
-  font-size: 14px;
-  //text-decoration: italic;
-  //border: 1px solid black;
+  font-size: 13px;
   padding-bottom: 1em;
 }
 
 .info-card {
   margin-top: 2em;
   background-color: #EAF2E3;
-  width: 82%;
-  height: 16vh;
+  width: 88%;
+  height: 17vh;
   padding: .25em;
 }
 
@@ -61,19 +51,15 @@ aside > p {
   width: 90%;
 }
 
-// MEDIA - DESKTOP SHRINK
-@media only screen and (max-width: 1050px) {
-  .art-details {
-    flex-direction: column;
-  }
+// MEDIA - DESKTOP 
+@media only screen and (min-width: 1000px) {
 
   .details-image {
     max-width: 100%;   
     height: auto;
-    //margin-bottom: 3%;
   }
   .info-card {
-    height: 18vh;
+    height: 20vh;
     font-size: 17px;
   }
 
@@ -92,15 +78,14 @@ aside > p {
 // MEDIA - TABLET
 @media only screen and (max-width: 750px) {
   .details-image {
-    width: 60em;
+    width: 80%;
     height: 30em;
     
   }
   aside {
-    //background-color: #BA8F95;
     margin-left: -5rem;
     text-align: center;
-    width: 100%;
+    width: 60%;
     margin-top: 0;
     height: 9em;
     color: #08090A;
@@ -108,14 +93,15 @@ aside > p {
     font-size: 12px;
   }  
   .add-favorite {
-    width: 100%;
+    width: 20rem;
     margin-top: 2px;
     margin-left: 1rem;
   }
   .info-card {
+    width: 50%;
     margin-top: 8px;
     height: 42rem;
-    width: 55rem;  
+    width: 40rem;  
   }
 
 }

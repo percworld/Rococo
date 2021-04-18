@@ -103,7 +103,7 @@ function App() {
   return (
     <GalleryContext.Provider value={state}>
       <div className="App">
-        <Header getIDs={getIDs} viewFavorites={viewFavorites}></Header>
+        <Header getIDs={getIDs} searchTerm={searchTerm} viewFavorites={viewFavorites}></Header>
         {loading ? <h1>Loading...</h1> : <Route exact path="/" component={Wall} />}
         <Route exact path='/:artPieceID' render={({ match }) => {
           const { artPieceID } = match.params;

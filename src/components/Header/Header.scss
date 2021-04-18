@@ -30,9 +30,8 @@ header {
   .favorites-button {
     @include headerButton;
     font-size: 16px;
-    margin-top: 12px;
-    font-weight:  100;
-    //text-transform: none;
+    margin-top: 4px;
+    font-weight: 800;
     padding: 1vw;
     height: 2em;
 
@@ -45,7 +44,7 @@ header {
 
 }
 
-// MEDIA - TABLET
+// MEDIA - HANDHELD
 @media only screen and (max-width: 700px) {
   
   .logo-container {
