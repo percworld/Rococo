@@ -52,6 +52,7 @@ describe('Details View', () => {
 
     it('should go back home by clicking the header logo', () => {
         cy.get('.div1').click();
+        cy.intercept(`${url}search?hasImages=true&q=canvas&q=painting&q=oil&`, { fixture: 'artIDs.json' })
         cy.get('button').first().click();
         cy.get('.div2').children().should('exist')
     })
