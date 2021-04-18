@@ -34,16 +34,18 @@ const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
     <>
       {loading ? <h1>Loading...</h1> : error ? <h1>error</h1> :
         <section className="art-details">
-          <img className="details-image" src={selectedArt.primaryImage} alt={selectedArt.title} />
+          <div className="details-image">
+            <img className="single-art-view" src={selectedArt.primaryImage} alt={selectedArt.title} />
+          </div>
           <aside>
             <article className="info-card">
               <h3>"{selectedArt.title}"</h3>
               <p>c. {selectedArt.objectBeginDate}-{selectedArt.objectEndDate}</p>
               <p>{selectedArt.artistDisplayName}</p>
               <p>{selectedArt.medium}</p>
-              {!favorites.includes(selectedArt.objectID) && <button className="add-favorite" onClick={() => addFavorite(selectedArt.objectID)}>Add to Favorites</button>}
-              {favorites.includes(selectedArt.objectID) && <button className="add-favorite" onClick={() => deleteFavorite(selectedArt.objectID)}>Remove from Favorites</button>}
-              <Link to='/'><button className="add-favorite">Go Back</button></Link>
+              {!favorites.includes(selectedArt.objectID) && <button data-cy="add-favorite" className="favorite" onClick={() => addFavorite(selectedArt.objectID)}>Add to Favorites</button>}
+              {favorites.includes(selectedArt.objectID) && <button data-cy="rmv-favorite" className="favorite" onClick={() => deleteFavorite(selectedArt.objectID)}>Remove from Favorites</button>}
+              <Link to='/'><button data-cy="back-button" className="favorite">Go Back</button></Link>
             </article>
           </aside>
         </section>}

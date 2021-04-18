@@ -10,10 +10,19 @@
   margin-top: -5em;
 }
 
+// PHONE
 @media only screen and (max-width: 550px) {
   .salonTemplate {
     width: 93%;
     height: 100em; 
+  }
+}
+
+// DESKTOP
+@media only screen and (min-width: 800px) {
+  .salonTemplate {
+    width: 73%;
+    height: 60em; 
   }
 }
 // .salonTemplate {

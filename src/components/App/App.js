@@ -57,7 +57,8 @@ function App() {
     dispatch({ type: 'UPDATE_IDS', payload: newIDs });
   }
 
-  const updateSearch = (terms) => {
+  const updateSearch = (event, terms) => {
+    event.preventDefault();
     dispatch({ type: 'UPDATE_TERMS', payload: terms })
   }
 
@@ -88,6 +89,7 @@ function App() {
   }
 
   useEffect(() => {
+    setLoading(true)
     let mounted = true;
     updateWall();
     if (mounted) {
@@ -113,12 +115,13 @@ function App() {
 
   return (
     <GalleryContext.Provider value={state}>
-      <div className="App">`
-      `
+      <div className="App">
         <Header getIDs={getIDs} searchTerm={searchTerm} viewFavorites={viewFavorites}></Header>
         <Switch>
           {loading ? <h1>Loading...</h1> : <Route exact path="/" component={Wall} />}
-          <Route exact path='/terms' component={Terms}></Route>
+          <Route exact path='/terms' render={() => {
+            return <Terms updateSearch={updateSearch} />
+          }} />
           <Route path='/:artPieceID' render={({ match }) => {
             const { artPieceID } = match.params;
             return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />

@@ -5,11 +5,28 @@
     width: 15vw;
     font-size: 13px;
     margin-top: 12px;
-    margin-left: 9rem;
+    margin-left: 28rem;
     font-weight:  100;
     padding: .5vw;
-
+    display:flex;
+    justify-content: center;
+    
+    
     &:hover {
       @include hoverButton;
     }
+  }
+
+  form {
+    width: 23em;
+    margin-left: 24em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  button {
+      @include headerButton;
+      width: 27vw;
+      font-size: 13px;
   }

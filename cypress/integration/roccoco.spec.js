@@ -53,12 +53,12 @@ describe('Details View', () => {
     it('should render a page for details on any piece of art clicked', () => {
         cy.get('.div3').click();
         cy.url().should('include', '/')
-        cy.get('section[class=art-details]').children()
+        cy.get('section[class=art-details]').children().children()
             .should('have.attr', 'src')
             .get('section[class=art-details]').children()
             .should('have.class', 'details-image')
             .get('article').should('have.class', 'info-card')
-            .children().should('have.length', '5')
+            .children().should('have.length', '6')
             .get('p').first().contains('c.')
     })
 
@@ -68,6 +68,14 @@ describe('Details View', () => {
         cy.get('button[class=logo-container]').click();
         cy.get('.div2').children().should('exist')
     })
+
+    it('should also go to base url by clicking the back button', () => {
+        cy.get('.div1').click()
+        cy.intercept(`${url}search?hasImages=true&q=canvas&q=painting&q=oil&`, { fixture: 'artIDs.json' })
+        cy.get('button[data-cy=back-button]').click();
+        cy.get('.div2').children().should('exist')
+    })
+
 })
 
 describe('Favorites Adding and Viewing', () => {
@@ -80,17 +88,17 @@ describe('Favorites Adding and Viewing', () => {
 
     it('should be able to add a favorite to the user\'s favorites', () => {
         cy.get('.div1').click();
-        cy.get('button[class=add-favorite]')
+        cy.get('button[data-cy=add-favorite]')
             .contains('Add to Favorites')
             .click();
-        cy.get('button[class=add-favorite]')
+        cy.get('button[data-cy=rmv-favorite]')
             .contains('Remove from Favorites')
     })
 
     it('should be able to view user\'s favorites', () => {
         cy.get('.div1').click();
-        cy.get('button[class=add-favorite]').click();
-        cy.get('.favorites-button').click();
+        cy.get('button[data-cy=add-favorite]').click();
+        cy.get('.favorites-button').first().click();
         cy.get('.salonTemplate')
             .children().get('.div1').should('have.attr', 'href')
         cy.get('.div2')
