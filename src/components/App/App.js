@@ -78,7 +78,7 @@ function App() {
     const wallArtIDs = shuffleItems(state.IDs);
     //console.log('full: ', wallArtIDs.length);
     const limitedWallArt = wallArtIDs.slice(0, 11);
-    //console.log('limited: ', limitedWallArt);
+    console.log('limited: ', limitedWallArt);
     try {
       const wallImages = await limitedWallArt.map(artID => getSingleArtPiece(artID))
       setError('');
@@ -102,7 +102,7 @@ function App() {
 
   const viewFavorites = () => {
     setIDs([]);
-    setIDs([state.favorites]);
+    setIDs(state.favorites);
   }
 
   const addFavorite = (itemID) => {
