@@ -58,9 +58,6 @@ function App() {
     dispatch({ type: 'UPDATE_IDS', payload: newIDs });
   }
 
-  const updateSearch = (terms) => {
-    dispatch({ type: 'UPDATE_TERMS', payload: terms })
-  }
 
 
   const getSingleArtPiece = async (artID) => {
@@ -98,6 +95,11 @@ function App() {
       mounted = false;
     }
   }, [state.IDs]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const updateSearch = (terms) => {
+    dispatch({ type: 'UPDATE_TERMS', payload: terms })
+    getIDs(searchTerm());
+  }
 
   const viewFavorites = () => {
     setIDs([]);
