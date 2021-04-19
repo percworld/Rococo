@@ -39,6 +39,7 @@ header {
     font-weight: 800;
     padding: 1vw;
     height: 2em;
+    width: 8em;
 
     &:hover {
       @include hoverButton;
