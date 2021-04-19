@@ -5,7 +5,7 @@ const galleryReducer = (state, action) => {
         case 'ADD_FAVORITE':
             return { ...state, favorites: [...state.favorites, action.payload] }
         case 'UPDATE_TERMS':
-            return { ...state, terms: [action.payload] }
+            return { ...state, terms: action.payload }
         case 'UPDATE_IDS':
             return { ...state, IDs: action.payload }
         case 'CLEAR_WALL':

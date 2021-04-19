@@ -58,7 +58,7 @@ function App() {
   }
 
   const updateSearch = (event, terms) => {
-    event.preventDefault();
+    //event.preventDefault();
     dispatch({ type: 'UPDATE_TERMS', payload: terms })
   }
 
@@ -76,7 +76,6 @@ function App() {
   const updateWall = async () => {
     dispatch({ type: 'CLEAR_WALL' });
     const wallArtIDs = shuffleItems(state.IDs);
-    //console.log('full: ', wallArtIDs.length);
     const limitedWallArt = wallArtIDs.slice(0, 11);
     console.log('limited: ', limitedWallArt);
     try {
@@ -117,16 +116,18 @@ function App() {
     <GalleryContext.Provider value={state}>
       <div className="App">
         <Header getIDs={getIDs} searchTerm={searchTerm} viewFavorites={viewFavorites}></Header>
-        <Switch>
-          {loading ? <h1>Loading...</h1> : <Route exact path="/" component={Wall} />}
-          <Route exact path='/terms' render={() => {
-            return <Terms updateSearch={updateSearch} />
-          }} />
-          <Route path='/:artPieceID' render={({ match }) => {
-            const { artPieceID } = match.params;
-            return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />
-          }} />
-        </Switch>
+        {loading ? <h1>Loading...</h1> :
+          <Switch>
+            <Route exact path="/" component={Wall} />
+            <Route exact path='/terms' render={() => {
+              return <Terms updateSearch={updateSearch} />
+            }} />
+            <Route path='/:artPieceID' render={({ match }) => {
+              const { artPieceID } = match.params;
+              return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />
+            }} />
+          </Switch>
+        }
       </div>
     </GalleryContext.Provider>
   );

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const Terms = ({ updateSearch }) => {
     const [term1, setTerm1] = useState();
     const [term2, setTerm2] = useState();
+
     const handleChange1 = (event) => {
         setTerm1(event.target.value)
         console.log(term1)
