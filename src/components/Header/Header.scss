@@ -4,11 +4,9 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  
-  //border-bottom: solid black 1px;
 
   .logo-container {
-    width: 9em;
+    width: 4em;
     text-align: center;
     @include headerButton;
     font-size: 31px;
@@ -19,7 +17,6 @@ header {
     @include headerButton;
     font-size: 31px;
     
-
     &:hover {
       @include hoverButton;
     }
@@ -33,11 +30,10 @@ header {
   .favorites-button {
     @include headerButton;
     font-size: 16px;
-    margin-top: 12px;
-    font-weight:  100;
-    //text-transform: none;
+    margin-top: 4px;
+    font-weight: 800;
     padding: 1vw;
-
+    height: 2em;
 
     &:hover {
       @include hoverButton;
@@ -48,11 +44,11 @@ header {
 
 }
 
+// MEDIA - HANDHELD
 @media only screen and (max-width: 700px) {
   
   .logo-container {
     font-size: 20px !important;
-    width: 10em !important;
   }
 
   .user-buttons {

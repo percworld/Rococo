@@ -5,15 +5,15 @@ const galleryReducer = (state, action) => {
         case 'ADD_FAVORITE':
             return { ...state, favorites: [...state.favorites, action.payload] }
         case 'UPDATE_TERMS':
-            return { ...state, terms: [action.payload] }
-        case 'UPDATE_SINGLE':
-            return { ...state, featured: action.payload };
+            return { ...state, terms: action.payload }
         case 'UPDATE_IDS':
             return { ...state, IDs: action.payload }
         case 'CLEAR_WALL':
             return { ...state, wall: [] }
         case 'DELETE_FAVORITE':
-            return { ...state, favorites: state.favorites.filter(favorite => favorite != action.payload) }
+            return { ...state, favorites: state.favorites.filter(favorite => favorite !== action.payload) }
+        case 'ERROR':
+            return { ...state, error: action.payload };
         default:
             return state;
     }
