@@ -11,6 +11,11 @@ header {
     @include headerButton;
     font-size: 31px;
     z-index: 1;
+
+    &:hover {
+      @include hoverButton;
+      margin-top: -2px;
+    }
   }
 
   h1 {
@@ -37,7 +42,7 @@ header {
 
     &:hover {
       @include hoverButton;
-      margin-top: 12px;
+      margin-top: 2px;
       font-size: 15px;
     }
   }
