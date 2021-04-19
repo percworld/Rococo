@@ -5,7 +5,7 @@ import GalleryContext from '../../context/gallery-context';
 import { compareDimensions } from '../../utilities.js';
 
 const Wall = () => {
-  const { wall, error } = useContext(GalleryContext);
+  const { wall, error, terms } = useContext(GalleryContext);
   const sizeOrder = items => {
     return items.sort(compareDimensions);
   }
@@ -25,6 +25,7 @@ const Wall = () => {
   return (
     <section className='salonTemplate'>
       {error ? <p>error</p> : artworksToDisplay}
+      <h3>Search Terms: {terms[0]} and {terms[1]}</h3>
     </section>
   )
 

@@ -40,6 +40,11 @@ describe('Get Images By Tags', () => {
         cy.get('.div2').children().should('exist')
             .and('have.attr', 'src').and('include', 'jpg')
     })
+
+    it('should show the user an error screen if a url is incorrect and direct them home', () => {
+        cy.visit('http://localhost:3000/billiards')
+            .get('h2').contains('Something went wrong, click on the top left logo to get back home')
+    })
 })
 
 describe('Details View', () => {
@@ -86,13 +91,17 @@ describe('Favorites Adding and Viewing', () => {
         cy.visit('http://localhost:3000/')
     })
 
-    it('should be able to add a favorite to the user\'s favorites', () => {
+    it('should be able to add and remove a favorite to and from the user\'s favorites', () => {
         cy.get('.div1').click();
         cy.get('button[data-cy=add-favorite]')
             .contains('Add to Favorites')
             .click();
         cy.get('button[data-cy=rmv-favorite]')
             .contains('Remove from Favorites')
+        cy.get('button[data-cy=rmv-favorite]')
+            .click();
+        cy.get('.favorites-button').first().click();
+        cy.get('.salonTemplate').children().should('have.length', '1')
     })
 
     it('should be able to view user\'s favorites', () => {
@@ -104,6 +113,20 @@ describe('Favorites Adding and Viewing', () => {
         cy.get('.div2')
             .children().should('exist')
             .and('have.attr', 'src').and('include', 'jpg')
+    })
+})
+
+describe('Searching', () => {
+    beforeEach(() => {
+        cy.intercept(`${url}search?hasImages=true&q=canvas&q=painting&q=oil&`, { fixture: 'artIDs.json' })
+        cy.intercept(`${url}objects/208013`, { fixture: 'artData1.json' })
+        cy.intercept(`${url}objects/203013`, { fixture: 'artData2.json' })
+        cy.visit('http://localhost:3000/')
+    })
+
+    it('should have a search button', () => {
+        cy.get('button[data-cy="search-button"]')
+            .contains('Search Terms');
     })
 
 })

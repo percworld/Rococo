@@ -4,6 +4,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { shuffleItems } from '../../utilities';
 import Wall from '../Wall/Wall';
 import Header from '../Header/Header';
+import Error from '../Error/Error';
 import ArtDetails from '../ArtDetails/ArtDetails';
 import Terms from '../Terms/Terms';
 import { getIdObject, getArtByID } from '../../apiCalls';
@@ -57,8 +58,7 @@ function App() {
     dispatch({ type: 'UPDATE_IDS', payload: newIDs });
   }
 
-  const updateSearch = (event, terms) => {
-    //event.preventDefault();
+  const updateSearch = (terms) => {
     dispatch({ type: 'UPDATE_TERMS', payload: terms })
   }
 
@@ -116,15 +116,19 @@ function App() {
     <GalleryContext.Provider value={state}>
       <div className="App">
         <Header getIDs={getIDs} searchTerm={searchTerm} viewFavorites={viewFavorites}></Header>
+        {state.error && <h2 className='errorMessage'>Something went wrong... {state.error}</h2>}
         {loading ? <h1>Loading...</h1> :
           <Switch>
             <Route exact path="/" component={Wall} />
-            <Route exact path='/terms' render={() => {
+            <Route path='/terms' render={() => {
               return <Terms updateSearch={updateSearch} />
             }} />
-            <Route path='/:artPieceID' render={({ match }) => {
+            <Route path='/detail/:artPieceID' render={({ match }) => {
               const { artPieceID } = match.params;
               return <ArtDetails artPieceID={artPieceID} addFavorite={addFavorite} deleteFavorite={deleteFavorite} />
+            }} />
+            <Route path='/:error' render={() => {
+              return <Error error={state.error} />
             }} />
           </Switch>
         }

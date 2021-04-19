@@ -4,35 +4,30 @@ import { Link } from 'react-router-dom';
 
 
 const Terms = ({ updateSearch }) => {
-    const [term1, setTerm1] = useState();
-    const [term2, setTerm2] = useState();
+    const [term1, setTerm1] = useState("");
+    const [term2, setTerm2] = useState("");
 
-    const handleChange1 = (event) => {
-        setTerm1(event.target.value)
-        console.log(term1)
-    }
-    const handleChange2 = (event) => {
-        setTerm2(event.target.value)
-    }
     return (
         <section>
             <Link to='/'><button className='back-button'>Go Back</button></Link>
             <h1>L </h1>
             <p> E </p>
-            <form onSubmit={(event) => { updateSearch(event, [term1, term2]) }}><p></p>
+            <form><p></p>
                 <input
                     type='text'
+                    name='term1'
                     placeholder='Enter term #1'
                     value={term1}
-                    onChange={() => handleChange1}>
+                    onChange={e => setTerm1(e.target.value)}>
                 </input><p> T </p>
                 <input
                     type='text'
+                    name='term2'
                     placeholder='Enter term #2'
                     value={term2}
-                    onChange={handleChange2}>
+                    onChange={e => setTerm2(e.target.value)}>
                 </input><p> A </p>
-                <Link to='/'><button>Click here to submit</button></Link>
+                <Link to='/' ><button onClick={() => updateSearch([term1, term2])}>Click here to submit</button></Link>
             </form>
         </section>
     )
