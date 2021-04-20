@@ -6,8 +6,8 @@
 
 ## Visit the App
 1. In your terminal, clone this repository by running ```git clone https://github.com/percworld/Rococo.git```
-2. run the command ```serve -s build```
-3. then in your browser navigate to http://localhost:5000/
+2. Run the command ```serve -s build```
+3. In your browser navigate to http://localhost:5000/
 
 ## Home screen
 ![Home screen](https://user-images.githubusercontent.com/71858456/115323832-06df1d00-a146-11eb-9028-f690d87c6675.png)
@@ -25,6 +25,8 @@ In this project, I researched and included React's built-in Context API and Redu
 2. React Context API
 3. API Courtesy of the Metropolitan Museum
 4. Testing with Cypress
+
+## Future Updates:  Although Cypress is used for testing all user flows, the search function is an extension and is not as interesting as it could be.  This was not a ticket or part of the MVP and a fun addition that I think could be implemented in a section of dropdown menus, possibly with different eras and fully tested.
 
 ## Contributors:
 [Chuck Morris Github](https://github.com/percworld)
