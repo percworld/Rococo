@@ -13,7 +13,7 @@ import GalleryContext from '../../context/gallery-context';
 
 const initialState = {
   wall: [],
-  favorites: [], //506088
+  favorites: [],
   terms: ['canvas', 'painting', 'oil'],
   single: {},
   IDs: [],
@@ -46,7 +46,6 @@ function App() {
       setIDs([]);
       const idMatches = await getIdObject(searchTerm);
       setIDs(idMatches);
-      console.log('# of IDs: ', idMatches.length)
       setError('')
     } catch (error) {
       setError(error)
@@ -82,7 +81,6 @@ function App() {
     dispatch({ type: 'CLEAR_WALL' });
     const wallArtIDs = shuffleItems(state.IDs);
     const limitedWallArt = wallArtIDs.slice(0, 11);
-    console.log('limited: ', limitedWallArt);
     try {
       const wallImages = await limitedWallArt.map(artID => getSingleArtPiece(artID))
       setError('');

@@ -12,7 +12,6 @@ const ArtDetails = ({ artPieceID, addFavorite, deleteFavorite }) => {
   const getArtPiece = async () => {
     try {
       const artPiece = await getArtByID(artPieceID);
-      console.log(artPiece, 'artPiece')
       setSelectedArt(artPiece);
     } catch (error) {
       setLoading(true)
