@@ -26,8 +26,9 @@ In this project, I researched and included React's built-in Context API and Redu
 3. API Courtesy of the Metropolitan Museum
 4. Testing with Cypress
 
-## Future Updates:  Although Cypress is used for testing all user flows, the search function is an extension and is not as interesting as it could be.  This was not a ticket or part of the MVP and a fun addition that I think could be implemented in a section of dropdown menus, possibly with different eras and fully tested.
+#### Future Updates:  Although Cypress is used for testing all user flows, the search function is an extension and is not as interesting as it could be.  This was not a ticket or part of the MVP and a fun addition that I think could be implemented in a section of dropdown menus, possibly with different eras and fully tested.
 
 ## Contributors:
 [Chuck Morris Github](https://github.com/percworld)
+
 [Reggie Thompson](https://github.com/rdtho2525)
