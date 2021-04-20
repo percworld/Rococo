@@ -1,3 +1,4 @@
+
 ## Roccoco de l'eau
 ---
 ## A little background: 'Salon' means living room.  Salon-style is a way to display art, referring to the secular style primarily used for interiors of private residences.  Roccoco, sometimes known as late-baroque, began in the 1730's as a reaction against formal and all too geometric display.  Rocaille was a method of decoration that was used with cememnt and seashells to decorate fountains and grottos, thus the term "Roccoco style".  Art would be displayed in a random fashion on a wall to accentuate it's authenticity.  
@@ -32,3 +33,4 @@ In this project, I researched and included React's built-in Context API and Redu
 [Chuck Morris Github](https://github.com/percworld)
 
 [Reggie Thompson](https://github.com/rdtho2525)
+

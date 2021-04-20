@@ -11,32 +11,49 @@ import { getIdObject, getArtByID } from '../../apiCalls';
 import galleryReducer from '../../context/gallery-reducer';
 import GalleryContext from '../../context/gallery-context';
 
-
 const initialState = {
   wall: [],
-  favorites: [], //506088
+  favorites: [],
   terms: ['canvas', 'painting', 'oil'],
   single: {},
   IDs: [],
   error: ''
 }
 
-
-
 function App() {
   const [state, dispatch] = useReducer(galleryReducer, initialState);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getIDs(searchTerm());
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+
+  useEffect(() => {
+    setLoading(true)
+    let mounted = true;
+    updateWall();
+    if (mounted) {
+      setLoading(false);
+    }
+    return function cleanup() {
+      mounted = false;
+    }
+  }, [state.IDs]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const getIDs = async (searchTerm) => {
     try {
       setIDs([]);
       const idMatches = await getIdObject(searchTerm);
       setIDs(idMatches);
-      console.log('# of IDs: ', idMatches.length)
       setError('')
     } catch (error) {
       setError(error)
     }
+  }
+
+  const setIDs = (newIDs) => {
+    dispatch({ type: 'UPDATE_IDS', payload: newIDs });
   }
 
   const searchTerm = () => {
@@ -46,19 +63,9 @@ function App() {
     }, '')
   }
 
-  useEffect(() => {
-    getIDs(searchTerm());
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
   const setError = (error) => {
     dispatch({ type: 'ERROR', payload: error })
   }
-
-  const setIDs = (newIDs) => {
-    dispatch({ type: 'UPDATE_IDS', payload: newIDs });
-  }
-
-
 
   const getSingleArtPiece = async (artID) => {
     try {
@@ -74,7 +81,6 @@ function App() {
     dispatch({ type: 'CLEAR_WALL' });
     const wallArtIDs = shuffleItems(state.IDs);
     const limitedWallArt = wallArtIDs.slice(0, 11);
-    console.log('limited: ', limitedWallArt);
     try {
       const wallImages = await limitedWallArt.map(artID => getSingleArtPiece(artID))
       setError('');
@@ -83,18 +89,6 @@ function App() {
       setError(error);
     }
   }
-
-  useEffect(() => {
-    setLoading(true)
-    let mounted = true;
-    updateWall();
-    if (mounted) {
-      setLoading(false);
-    }
-    return function cleanup() {
-      mounted = false;
-    }
-  }, [state.IDs]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const updateSearch = (terms) => {
     dispatch({ type: 'UPDATE_TERMS', payload: terms })
