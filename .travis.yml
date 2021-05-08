@@ -6,3 +6,5 @@ notifications:
 script:
   - npm run cypress
   - npm run build
+  before_install:
+  - sudo apt-get update
