@@ -7,7 +7,7 @@
 
 ## Visit the App
 1. In your terminal, clone this repository by running ```git clone https://github.com/percworld/Rococo.git```
-2. Run the command ```serve -s build```
+2. Run the command ```npm install```
 3. In your browser navigate to http://localhost:5000/
 
 ## Home screen
@@ -33,4 +33,6 @@ In this project, I researched and included React's built-in Context API and Redu
 [Chuck Morris Github](https://github.com/percworld)
 
 [Reggie Thompson](https://github.com/rdtho2525)
+
+[Matt Umland](https://github.com/mattumland)
 
