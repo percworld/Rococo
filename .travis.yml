@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - "node"
+notifications:
+  email: false
+script:
+  - npm run cypress
+  - npm run build
