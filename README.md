@@ -1,9 +1,9 @@
 
 ## Roccoco de l'eau
 ---
-## A little background: 'Salon' means living room.  Salon-style is a way to display art, referring to the secular style primarily used for interiors of private residences.  Roccoco, sometimes known as late-baroque, began in the 1730's as a reaction against formal and all too geometric display.  Rocaille was a method of decoration that was used with cememnt and seashells to decorate fountains and grottos, thus the term "Roccoco style".  Art would be displayed in a random fashion on a wall to accentuate it's authenticity.  
+### A little background: 'Salon' means living room.  Salon-style is a way to display art, referring to the secular style primarily used for interiors of private residences.  Roccoco, sometimes known as late-baroque, began in the 1730's as a reaction against formal and all too geometric display.  Rocaille was a method of decoration that was used with cememnt and seashells to decorate fountains and grottos, thus the term "Roccoco style".  Art would be displayed in a random fashion on a wall to accentuate it's authenticity.  
 
-## This app generates a wall of art based upon terms fed into it.  There are so many possibilities, as its API is the Metropolitan museum in New York City and the API hosts 43,000+ artworks to sort. Please enjoy Roccoco de l'eau, a tribute to the place where handheld devices are used when free time is actually available.
+### This app generates a wall of art based upon terms fed into it.  There are so many possibilities, as its API is the Metropolitan museum in New York City and the API hosts 43,000+ artworks to sort. Please enjoy Roccoco de l'eau, a tribute to the place where handheld devices are used when free time is actually available.
 
 ## Visit the App
 1. In your terminal, clone this repository by running ```git clone https://github.com/percworld/Rococo.git```
