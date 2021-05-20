@@ -6,9 +6,12 @@
 ### This app generates a wall of art based upon terms fed into it.  There are so many possibilities, as its API is the Metropolitan museum in New York City and the API hosts 43,000+ artworks to sort. Please enjoy Roccoco de l'eau, a tribute to the place where handheld devices are used when free time is actually available.
 
 ## Visit the App
+### Can be accessed via it's heroku deployment for immediate enjoyment: [Roccoco](https://roccoco.herokuapp.com/)
+Otherwise for development:
 1. In your terminal, clone this repository by running ```git clone https://github.com/percworld/Rococo.git```
 2. Run the command ```npm install```
-3. In your browser navigate to http://localhost:5000/
+3. Run ```npm start```
+4. In your browser navigate to http://localhost:3000/
 
 ## Home screen
 ![Home screen](https://user-images.githubusercontent.com/71858456/115323832-06df1d00-a146-11eb-9028-f690d87c6675.png)
